@@ -1,0 +1,644 @@
+/* Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+
+
+a {
+	text-decoration: none;
+	-o-transition:.5s;
+  	-ms-transition:.5s;
+  	-moz-transition:.5s;
+  	-webkit-transition:.5s;
+  	transition:.5s;
+}
+
+a:visited {
+	text-decoration: none;
+	color:#ffffff;
+}
+
+p a {
+	text-decoration: underline;
+	color: #ffffff;
+}
+
+.project p a {
+	color: #29B573;
+}
+
+p a:visited {
+	text-decoration: underline;
+	color: #ffffff;
+}
+
+li {
+	text-align: left;
+	line-height: 1.5em;
+	padding: .5em 1.5em;
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 0.9em;
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h2 a {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+h3 a {
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+/* Global Structure */
+
+.grid_01_main {
+	margin: 0 auto;
+	max-width: 940px;
+	position: relative;
+	padding: 1em 1.250em;
+}
+
+
+.hero_copy img {
+	float: left;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px; 
+	width: 40%;
+	height: auto;
+}
+
+.project .hero_copy img {
+	float: none;
+	margin: 0 auto;
+	display: block;
+	width: 70%;
+	height: auto;
+}
+
+.grid_02_hero {
+	margin: 0 auto;
+	position: relative;
+	padding: 1.250em;
+	text-align: left;
+}
+
+.grid_02_hero img {
+	margin: 0 auto;
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+input, textarea {
+	border-radius: 6px;
+	border: 0px none;
+	width: 80%;
+	padding: 15px;
+	text-align: center;
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	background-color:#323232;
+	color:#ffffff;
+	display: block;
+	margin: 10px auto;
+}
+
+input[type="submit"]:hover {
+    transition: background-color 150ms ease 0s, border-color 150ms ease 0s, color 75ms ease-out 0s;
+}
+
+input[type="submit"] {
+    border-color: transparent;
+    outline: 0px none;
+    transition: background-color 150ms ease 0s, border-color 150ms ease 0s, color 75ms ease-out 0s;
+    -webkit-appearance: none;
+}
+
+label {
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+	color:#FFFFFF;
+}
+
+.btn_hero {
+	background: #8bc53f;
+	color: #ffffff;
+	text-align: center;
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-weight: 800;
+	font-size: 1em;
+	-webkit-box-shadow: #1b7045 0 0.188em;
+	-moz-box-shadow: #1b7045 0 0.188em;
+	box-shadow: #1b7045 0 0.188em;
+	border-radius: 0.250em;
+	padding: 0.938em;
+	margin: 0 auto;
+}
+
+.btn_hero:hover {
+	background: #0d884a;
+
+}
+
+.grid_03_single-button {
+	display: block;
+	padding: 0em 0em;
+	text-align: center;
+}
+
+.grid_03_three_col {
+	margin: 0px auto;
+	position: relative;
+	padding: 1em 0em 1em;
+	text-align: center;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+}
+
+.grid_04_ad_units {
+	display: inline-block;
+	width: 49%;
+	margin: 0.1em 0em;
+	text-align: center;
+}
+
+.grid_04_ad_units a {
+	display: block;
+	padding: 0 5%;
+	margin: 0;
+	position: relative;
+}
+
+
+/* Scaling effect from Jessica Paoli, http://jessicapaoli.com */
+.grid_04_ad_units a:hover img {
+	-webkit-transform: scale3d(1.05, 1.05, 1);
+	transform: scale3d(1.05, 1.05, 1);
+}
+
+.grid_04_ad_units h3 {
+	color: #29b473;
+}
+
+.grid_04_ad_units a:hover h3 {
+	color: #8bc53f;
+}
+
+.grid_04_ad_units img {
+	padding: 18% 0;
+	display: block;
+	max-width: 94%;
+	margin: 0 auto;
+	width:100%;
+	transition: all 0.15s ease-in-out
+}
+
+.social-icons {
+	
+}
+
+/* Base */
+
+body {
+	background: #29b473 url('../img/bkg_pattern.svg');
+}
+
+.project {
+	background: #ffffff url('../img/bkg_pattern_gray.svg');
+}
+
+.no-svg body {
+  background-image: url('../img/bkg_pattern.png');
+}
+
+.no-svg .project {
+  background-image: url('../img/bkg_pattern_gray.png');
+}
+
+.project h1 {
+	color: #29B473;
+	padding: 0em 0em 0em 0em;
+}
+
+h1 {
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-weight: 800;
+	font-size: 2.5em;
+	line-height: 1.2em;
+	color: #c3f76f;
+	padding: 0.7em 0em;
+}
+
+.project h2 {
+	color:#494949;
+	font-size: 1em;
+	line-height: 1.4em;
+	text-align: center;
+}
+
+.project_detail {
+	color: #29b573;
+}
+
+h2 {
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 1.4em;
+	line-height: 1.5em;
+	padding: .5em 0;
+	color: #ffffff;
+}
+
+h3 {
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 1.4em;
+	line-height: 1.5em;
+	padding: .5em 0;
+	color:#c3f76f;
+}
+
+p {
+	font-family: "atc_overlookmedium", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 1em;
+	color: #ffffff;
+	line-height: 1.5em;
+	padding: .5em 0em;
+}
+
+.project p {
+	color: #494949;
+}
+
+
+/* Header */
+
+#logo {
+	display: block;
+	padding: 1em 0em;
+	margin: 0 auto;
+}
+
+#logo img {
+	width: 150px;
+	height: 63px;
+}
+
+/* Home - Hero */
+
+.home_hero {
+	padding-top: 5em;
+}
+
+/* Video */
+
+.video_container {
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+}
+
+.video_container iframe, .video_container object, .video_container embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+/* Ads */
+
+.grid_04_ad_units h3 {
+	font-size: 1em;
+	line-height: 1.3em;
+	padding: .2em;
+	padding: 0 0 18% 0;
+}
+
+.ad_description_alt {
+	padding: .5em 0;
+}
+
+.ad_description_alt p {
+	text-align: left;
+	line-height: 2em;
+	padding: .5em 0;
+}
+
+.ad_description {
+	padding: .5em 0;
+}
+
+.ad_description p {
+	text-align: left;
+	line-height: 2em;
+	padding: .5em 0;
+}
+
+/* About */
+
+h3.names {
+	font-size: 2em;
+	padding: .2em;
+	padding: 0 0 18% 0;
+}
+
+/* Footer */
+
+footer {
+	text-align: center;
+	font-size: 0.8em;
+	padding: 1.5em 1em;
+	clear: both;
+	background-color: #06512b;
+}
+
+footer p {
+	padding: 0em;
+}
+
+.project footer p {
+	color: #FFFFFF
+}
+
+footer a {
+	color:#ffffff;
+}
+
+.project footer a {
+	color:#ffffff;
+}
+
+/* Info Popups */
+
+a.tooltip {
+	outline:none;
+}
+
+a.tooltip strong {
+	line-height:30px;
+}
+
+a.tooltip:hover {
+	text-decoration:none;
+} 
+
+a.tooltip span {
+    z-index:10;
+    display:none;
+    padding:14px 20px;
+    margin-top:0px;
+    margin-left:-160px;
+    width:200px;
+    line-height:16px;
+}
+
+a.tooltip:hover span{
+    display:inline;
+    position:absolute; 
+    border:2px solid #FFF;
+    color:#EEE;
+    background:#333 url(img/css-tooltip-gradient-bg.png) repeat-x 0 0;
+}
+
+.callout {
+	z-index:20;
+	position:absolute;
+	border:0;
+}
+
+a.tooltip span {
+    border-radius:2px;        
+    box-shadow: 0px 0px 8px 4px #666;
+    /*opacity: 0.8;*/
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 0.1em) and (max-width: 45.499em) {
+    
+    h1 {
+        font-size: 2em;
+		line-height: 1.3em;
+    }
+
+    .project h1 {
+        font-size: 1.8em;
+		line-height: 1.3em;
+		text-align: center;
+    }
+
+	h3 {
+		font-size: 1.7em;
+	}
+
+}
+
+
+@media screen and (min-width: 45.500em) and (max-width: 62.063em) {
+    
+    h1 {
+        font-size: 3.4em;
+		line-height: 1.2em;
+    }
+
+    .project h1 {
+        font-size: 2.3em;
+		line-height: 1.5em;
+		text-align: center;
+    }
+
+    .project h2 {
+		font-size: 1.2em;
+		line-height: 1.6em;
+	}
+
+    h3 {
+		font-size: 1.7em;
+	}
+
+    .grid_04_ad_units {
+		width: 30%;
+	}
+
+}
+
+@media screen and (min-width: 62.063em) {
+    
+    .project h1 {
+        font-size: 3.3em;
+		line-height: 1.9em;
+		text-align: center;
+    }
+
+
+    h2 {
+        font-size: 1.9em;
+		line-height: 1.5em;
+    }
+
+    .project h2 {
+		font-size: 1.3em;
+		line-height: 1.7em;
+	}
+
+    h3 {
+		font-size: 1.7em;
+	}
+
+    .btn_hero {
+    	font-size: 2em;
+    }
+
+    .grid_03_single-button {
+    	padding: 1.5em 0em;
+	}
+
+	.grid_04_ad_units {
+		width: 23%;
+	}
+
+	.specs {
+		width: 100%;
+		padding: 0em;
+		vertical-align: top;
+	}
+
+	.specs h2 {
+		width: 100%;
+		padding: 1em 0em;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.specs h3 {
+		width: 35%;
+		padding: 1em 0.5em;
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 auto;
+
+	}
+
+	.ad_description {
+		width: 100%;
+		padding: 0em;
+		vertical-align: top;
+	}
+
+	.ad_description p {
+		display: block;
+		width: 45%;
+		padding: 2em 1em;
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+/* Scroll to Top Button, Courtesy of http://codyhouse.co/gem/back-to-top/ */
+
+.cd-top {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: #29b473 url(../img/cd-top-arrow.svg) no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .5s 0s, visibility 0s .5s;
+  -moz-transition: opacity .5s 0s, visibility 0s .5s;
+  transition: opacity .5s 0s, visibility 0s .5s;
+}
+
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .5s 0s, visibility 0s 0s;
+  -moz-transition: opacity .5s 0s, visibility 0s 0s;
+  transition: opacity .5s 0s, visibility 0s 0s;
+}
+
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+
+.no-touch .cd-top:hover {
+  background-color: #8bc53f;
+  opacity: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 60px;
+    width: 60px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
