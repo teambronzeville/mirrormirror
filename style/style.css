@@ -200,14 +200,14 @@ label {
 	border-radius: 10px;
 }
 
-.grid_04_ad_units {
+.grid_04 {
 	display: inline-block;
 	width: 49%;
 	margin: 0.1em 0em;
 	text-align: center;
 }
 
-.grid_04_ad_units a {
+.grid_04 a {
 	display: block;
 	padding: 0 5%;
 	margin: 0;
@@ -216,20 +216,20 @@ label {
 
 
 /* Scaling effect from Jessica Paoli, http://jessicapaoli.com */
-.grid_04_ad_units a:hover img {
+.grid_04 a:hover img {
 	-webkit-transform: scale3d(1.05, 1.05, 1);
 	transform: scale3d(1.05, 1.05, 1);
 }
 
-.grid_04_ad_units h3 {
+.grid_04 h3 {
 	color: #29b473;
 }
 
-.grid_04_ad_units a:hover h3 {
+.grid_04 a:hover h3 {
 	color: #8bc53f;
 }
 
-.grid_04_ad_units img {
+.grid_04 img {
 	padding: 18% 0;
 	display: block;
 	max-width: 94%;
@@ -356,7 +356,7 @@ p {
 
 /* Ads */
 
-.grid_04_ad_units h3 {
+.grid_04 h3 {
 	font-size: 1em;
 	line-height: 1.3em;
 	padding: .2em;
@@ -505,7 +505,7 @@ a.tooltip span {
 		font-size: 1.7em;
 	}
 
-    .grid_04_ad_units {
+    .grid_04 {
 		width: 30%;
 	}
 
@@ -542,7 +542,7 @@ a.tooltip span {
     	padding: 1.5em 0em;
 	}
 
-	.grid_04_ad_units {
+	.grid_04 {
 		width: 23%;
 	}
 
