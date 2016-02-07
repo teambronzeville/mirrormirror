@@ -339,6 +339,12 @@ p {
 	height: 63px;
 }
 
+select {
+		display: block;
+		font-size: 1.2em;
+		margin-bottom: 1em;
+}
+
 /* Home - Hero */
 
 .home_hero {

@@ -1,16 +1,18 @@
 jQuery(document).ready(function($) {
 
   var views = {
-    INFO: 'back',
-    GAME: 'continue',
-    IDENTIFY: 'guess',
+    INFO: 'js-back', // if we have an about page...
+		START: 'js-start',
+    GAME: 'js-next',
+    IDENTIFY: 'js-guess',
+		SUMMARY: 'js-summary'
   }
 
   var criteria = {
     race: {
-      WHITE: 'white',
-      BLACK: 'black or african-american',
-      AMRNATIVE: 'american indian or alaska native',
+      WHITE: 'White',
+      BLACK: 'Black or African-American',
+      AMRNATIVE: 'American Indian or Alaska Native',
       ASIAN: 'Asian',
       NATHWPI: 'Native Hawaiian or Other Pacific Islander'
     },
@@ -19,7 +21,6 @@ jQuery(document).ready(function($) {
       CISM: 'Cis Male',
       TRW: 'Trans Woman',
       TRM: 'Trans Man',
-      GENNC: 'Gender non-conforming',
       GQ: 'Genderqueer'
     },
     ses: {
@@ -45,13 +46,29 @@ jQuery(document).ready(function($) {
 			ses: pickRandomProperty(criteria.ses),
 			ability_mental: pickRandomProperty(criteria.ability_mental),
 			ability_physical: pickRandomProperty(criteria.ability_physical)
-		}
+		};
+		var guess = {};
 
     return {
-			compare: function() {
-				// get user "guess" + compare with "hidden" identity
+			getAttribute: function(attr) {
+				return identity[attr];
 			},
-      view: views.INFO
+			// guess is an object, structured equivalently to identity ^
+			compare: function(guess) {
+				results = {};
+				// console.log(guess);
+				// get user "guess" + compare with "hidden" identity
+				_.each(identity, function(attribute, label) {
+					results[label] = results[label] || [];
+					// console.log(attribute, label);
+					console.log('GUESS', guess[label]);
+					console.log('MATCH?', attribute == guess[label]);
+					results[label] = (attribute == guess[label]);
+				});
+				console.log('RESULTS', results);
+			},
+			guess: guess,
+      view: views.START
     };
   }();
 
@@ -64,21 +81,79 @@ jQuery(document).ready(function($) {
     return result;
   }
 
-  // hide/show navigation based on state
+	function generateGuessUI() {
+		// generate options
+		var $sel;
+		_.each(criteria, function(criterium, label) {
 
-  // roll identity
+			$sel = $('<select/>')
+				.data('criteria', label)
+				.addClass('guess-attribute')
+				.append( $('<option/>' )
+				.attr('value', 0)
+				.text('-- select a ' + label) );
 
-  // choose identity, compare to rolled
+			_.each(criterium, function(attribute, label) {
+				$sel.append(
+					$('<option/>')
+						.attr('value', label)
+						.html(attribute)
+				);
+			});
 
-  // collect encounters
+			$sel.appendTo('#identity_options');
+		});
+	}
+
+	// game ticks! every time something changes,
+	function tick() {
+		// nav hide/show
+		$('.js-gamenav').hide();
+		$('.' + state.view).show();
+
+		if(state.view == views.GAME) {
+			// choose a random encounter & load it
+		}
+
+		if(state.view == views.SUMMARY) {
+			var results = state.compare(state.guess);
+
+			// generate guess markup into #match_results using #guess_match
+			$guess = $( $('#guess_match').html() );
+			$guess.appendTo('#match_results');
+		}
+
+		if(state.view == views.IDENTIFY) {
+			generateGuessUI();
+			$('#submit_guess').on('click', createGuess);
+		}
+
+		console.log(state);
+	}
+
+	/**
+		GUESS?!
+	*/
+
+	function createGuess() {
+		// collect guess data & build a "guess" in state
+		$attrs = $('.guess-attribute');
+		_.each($attrs, function(attr) {
+			var criteria = $(attr).data('criteria');
+			state.guess[ $(attr).data('criteria') ] = $(attr).val()
+		});
+		window.location.hash = 'summary';
+	};
+
+  /**
+		ENCOUNTER MANAGEMENT
+	*/
+
+	// collect & categorize encounters by attributes
   var $encounters = $('.encounter');
-  console.log($encounters);
-
-  // categorize encounters by attributes
   var encounters_by_attribute = {};
 
   _.each($encounters, function(enc) {
-
     var $enc = $(enc);
     var attrs = $enc.data('attributes').split(' ');
 
@@ -86,13 +161,15 @@ jQuery(document).ready(function($) {
       encounters_by_attribute[attr] = encounters_by_attribute[attr] || [];
       encounters_by_attribute[attr].push($enc.html());
     });
-
   });
 
-  console.log(encounters_by_attribute);
+	// TODO: encounters that haven't been used yet
+	// loadRandomEncounter() {
+	// 	// TODO...
+	// }
 
   /**
-  	CONTENT LOADING
+  	CONTENT LOADING / MANAGEMENT
   */
 
   function loadContentForId(id) {
@@ -104,23 +181,37 @@ jQuery(document).ready(function($) {
     $('#contentTarget').html(content);
   }
 
-  $('.js-gamenav').on('click', function() {
-    return false;
-  });
-
   $(window).on("hashchange", function(evt) {
     var url = evt.originalEvent.newURL;
     var contentId = url.slice(url.indexOf('#') + 1);
     loadContentForId(contentId); // assumes all hashes have content
 
-    if (contentId == 'game') {
+		// console.log(contentId);
 
-    }
+		// change state based on hash
+		switch (contentId) {
+		  case 'welcome':
+				state.view = views.START;
+		    break;
+		  case 'game':
+				state.view = views.GAME;
+		    break;
+		  case 'identify':
+				state.view = views.IDENTIFY;
+		    break;
+		  case 'summary':
+				state.view = views.SUMMARY
+		    break;
+		  default:
+				state.view = views.START
+		}
+
+		tick();
   });
 
-  function changeState() {
-
-  }
+	/**
+		INIT
+	*/
 
   // set initial hash
   if (window.location.hash === '') {
@@ -131,5 +222,7 @@ jQuery(document).ready(function($) {
     window.location.hash = '';
     window.location.hash = tmp;
   }
+
+	generateGuessUI();
 
 });

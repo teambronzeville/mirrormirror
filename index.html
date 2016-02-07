@@ -31,9 +31,10 @@
 			<!-- bonjour! -->
 		</div>
 
-		<p><a class="js-start" href="#game">&gt; get started</a></p>
-		<p><a class="js-gamenav js-next" href="#error">&gt; continue</a></p>
-		<p><a class="js-guess" href="#identify">&gt; guess your identity</a></p>
+		<button class="js-gamenav js-start"><a href="#game">&gt; get started</a></button>
+		<button class="js-gamenav js-back"><a href="#error">&gt; back</a></button>
+		<button class="js-gamenav js-next"><a href="#error">&gt; continue</a></button>
+		<button class="js-gamenav js-next"><a href="#identify">&gt; guess your identity</a></button>
 	</div>
 
 	<!-- <div class="grid_01_main">
@@ -151,7 +152,7 @@
 
 
 	<template class="encounter" id="eating-hi-ses" data-attributes="high_ses">
-		Eat breakfast
+		You are hearing me talk about science and typing and other things.
 	</template>
 
 
@@ -159,11 +160,37 @@
 		Eat no breakfast
 	</template>
 
+	<template	id="identify">
+		<div id="identity_options"></div>
+		<button id="submit_guess">Submit!</button>
+	</template>
 
+	<template	id="summary">
+		<p>Here's how you did:</p>
+		<!-- results -->
+		<div id="match_results"></div>
+
+
+		<!-- explanation -->
+
+		<div class="profile">
+			<img style="float: left; width: 30%; margin: 0.6em 1em 0 0;" src="img/EGZ2I6wG.jpg">
+			<p>Kittens are an awesome source of ice cream. Learn more about <a href="#null">this kitten</a>.</p>
+		</div>
+	</template>
 
 	<template id="error" class="family social-media">
 		<p>Hey there! If you're seeing this, something went wrong. Not with you, but with this little game.</p>
 		<p>Drop us a note <a href="https://github.com/teambronzeville/mirrormirror">on the project page</a> if you'd like to tell us what happened.</p>
+	</template>
+
+	<template id="guess_match">
+		<div class="guess">
+			<div class="match">&#10003;</div>
+			<div class="no-match">&times;</div>
+			<div class="guess-text"></div>
+			<div class="actual-text"></div>
+		</div>
 	</template>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
