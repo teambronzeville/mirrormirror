@@ -37,7 +37,6 @@ jQuery(document).ready(function($){
 	}
 
 	$(window).on("hashchange", function(evt) {
-		console.log(evt);
 		var url = evt.originalEvent.newURL;
 		var contentId = url.slice(url.indexOf('#') + 1);
 		loadContentForId(contentId); // assumes all hashes have content
