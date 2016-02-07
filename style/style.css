@@ -186,7 +186,7 @@ label {
 	border: 0;
 	padding: 0.8 0.938em;
 	margin: 0 auto;
-	user-select: none; 
+	user-select: none;
 }
 
 .btn_hero:hover {
@@ -351,6 +351,13 @@ select {
 	display: block;
 	font-size: 1.2em;
 	margin-bottom: 1em;
+}
+
+select {
+	color: black;
+}
+option {
+	color: black;
 }
 
 .guess {

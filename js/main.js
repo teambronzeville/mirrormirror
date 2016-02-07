@@ -38,7 +38,27 @@ jQuery(document).ready(function($) {
     }
   };
 
-  var state = function() {
+	var identity_advantage = {
+		race: 'WHITE',
+		gender: 'CISM',
+		ses: 'UPPER',
+		ability_mental: 'DIV',
+		ability_physical: 'ABLE'
+	};
+
+	var identity_disadvantage = {
+		race: 'BLACK',
+		gender: 'GQ',
+		ses: 'MIDDLE',
+		ability_mental: 'TYP',
+		ability_physical: 'DIS'
+	};
+
+	var state = {
+		view: views.START
+	};
+
+  function init(identity_override) {
 
 		var identity = {
 			race: pickRandomProperty(criteria.race),
@@ -48,25 +68,13 @@ jQuery(document).ready(function($) {
 			ability_physical: pickRandomProperty(criteria.ability_physical)
 		};
 
-		var identity_advantage = {
-			race: 'WHITE',
-			gender: 'CISM',
-			ses: 'UPPER',
-			ability_mental: 'DIV',
-			ability_physical: 'ABLE'
-		};
-
-		var identity_disadvantage = {
-			race: 'BLACK',
-			gender: 'GQ',
-			ses: 'MIDDLE',
-			ability_mental: 'TYP',
-			ability_physical: 'DIS'
-		};
+		if(identity_override) {
+			identity = identity_override;
+		}
 
     return {
 
-			identity: identity_advantage,
+			identity: identity,
 
 			getIdentityAttribute: function(attr) {
 				// console.log(attr, identity[attr], criteria[attr][identity[attr]]);
@@ -75,7 +83,7 @@ jQuery(document).ready(function($) {
 
 			// guess is an object, structured equivalently to identity ^
 			compare: function(guess, og_identity) {
-				console.log(guess, og_identity);
+				// console.log(guess, og_identity);
 				results = {};
 				// get user "guess" + compare with "hidden" identity
 				_.each(og_identity, function(attribute, label) {
@@ -88,7 +96,7 @@ jQuery(document).ready(function($) {
 			guess: {},
       view: views.START
     };
-  }();
+  };
 
   function pickRandomProperty(obj) {
     var result;
@@ -162,7 +170,7 @@ jQuery(document).ready(function($) {
 			$('#submit_guess').on('click', createGuess);
 		}
 
-		console.log(state);
+		// console.log(state);
 	}
 
 	/**
@@ -185,36 +193,37 @@ jQuery(document).ready(function($) {
 		ENCOUNTER MANAGEMENT
 	*/
 
-	// collect & categorize encounters by attributes
-  var $encounters = $('.encounter');
-  var encounters_by_attribute = {};
+	var valid_encounters;
+	function buildEncounters() {
 
-	console.log('ENC ID', state.identity);
+		// collect & categorize encounters by attributes
+	  var $encounters = $('.encounter');
+	  var encounters_by_attribute = {};
 
-	var valid_attributes = _.map(state.identity, function(attr, key) {
-		return attr;
-	});
-	// console.log('VALID ATTR', valid_attributes);
-	var valid_encounters = [];
+		console.log('ENC ID', state.identity);
 
-  _.each($encounters, function(enc) {
-    var $enc = $(enc);
-    var attrs = $enc.data('attributes').split(' ');
+		var valid_attributes = _.map(state.identity, function(attr, key) {
+			return attr;
+		});
+		console.log('VALID ATTR', valid_attributes);
+		valid_encounters = [];
 
-    _.each(attrs, function(attr) {
-			if(valid_attributes.indexOf(attr) > 0) {
-				valid_encounters.push($enc.attr('id'));
-			}
-      encounters_by_attribute[attr] = encounters_by_attribute[attr] || [];
-      encounters_by_attribute[attr].push($enc.html());
-    });
-  });
+	  _.each($encounters, function(enc) {
+	    var $enc = $(enc);
+	    var attrs = $enc.data('attributes').split(' ');
 
-	valid_encounters = _.uniq(_.shuffle(valid_encounters));
+	    _.each(attrs, function(attr) {
+				if(valid_attributes.indexOf(attr) > 0) {
+					valid_encounters.push($enc.attr('id'));
+				}
+	      encounters_by_attribute[attr] = encounters_by_attribute[attr] || [];
+	      encounters_by_attribute[attr].push($enc.html());
+	    });
+	  });
 
-	console.log(valid_attributes, valid_encounters);
-
-	// console.log(encounters_by_attribute);
+		valid_encounters = _.uniq(_.shuffle(valid_encounters));
+		console.log(valid_encounters);
+	}
 
 	// TODO: encounters that haven't been used yet
 	function loadRandomEncounter() {
@@ -274,6 +283,24 @@ jQuery(document).ready(function($) {
 	/**
 		INIT
 	*/
+
+	$('#play-advantaged').on('click', function() {
+		state = init(identity_advantage);
+		console.log('state', state);
+		buildEncounters();
+	});
+
+	$('#play-disadvantaged').on('click', function() {
+		state = init(identity_disadvantage);
+		console.log('state', state);
+		buildEncounters();
+	});
+
+	$('#get-started').on('click', function() {
+		state = init();
+		console.log('state', state);
+		buildEncounters();
+	});
 
   // set initial hash
   if (window.location.hash === '') {

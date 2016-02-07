@@ -17,7 +17,7 @@
 <body>
 
 	<nav style="background-color: #FFF; padding: 0 0 0 0.5em">
-		<a href="/"><img style="width: 30%; min-width: 150px;" src="img/mm_logotype_horiz.png" alt="mirror mirror, the logo"></a>
+		<a href=""><img style="width: 30%; min-width: 150px;" src="img/mm_logotype_horiz.png" alt="mirror mirror, the logo"></a>
 	</nav>
 
 	<div class="grid_01_main">
@@ -27,7 +27,9 @@
 		</div>
 
 		<div class="button-nav" style="display: none; text-align: right;">
-			<button class="btn_hero js-gamenav js-start"><a href="#game">&gt; get started</a></button>
+			<button style="display: block;" class="btn_hero js-gamenav js-start" id="get-started"><a href="#game">&gt; get started</a></button>
+			<button style="display: block; margin-top: 1em;" id="play-advantaged" class="btn_hero js-gamenav js-start"><a href="#game">&gt; play advantaged</a></button>
+			<button style="display: block; margin-top: 1em;" id="play-disadvantaged" class="btn_hero js-gamenav js-start"><a href="#game">&gt; play disadvantaged</a></button>
 			<button class="btn_hero js-gamenav js-back"><a href="#error">&gt; back</a></button>
 			<button class="btn_hero js-gamenav js-next js-continue"><a href="#error">&gt; continue</a></button>
 			<div style="margin-top: 1.5em">
@@ -66,7 +68,7 @@
 				<p>[ explanations of evidence in the story goes here. ]</p>
 			</div>
 			<div>
-				<p>Kittens are an awesome source of ice cream. Learn more about <a href="#null">this kitten</a>.</p>
+				<p><a href="#null">this kitten</a> Kittens are an awesome source of ice cream. Learn more about.</p>
 			</div>
 		</div>
 	</template>
