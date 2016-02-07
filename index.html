@@ -11,7 +11,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="style/style.css">
 	<link rel="stylesheet" href="style/fonts.css" type="text/css" media="screen">
-	<script src="js/modernizr.js"></script>
+	<script src="js/modernizr.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 	<!-- </div> -->
 
 	<nav style="background-color: #FFF; padding: 0 0 0 0.5em">
-		<img style="width: 30%; min-width: 150px;" src="img/mm_logotype_horiz.png" alt="mirror mirror, the logo">
+		<a href="/"><img style="width: 30%; min-width: 150px;" src="img/mm_logotype_horiz.png" alt="mirror mirror, the logo"></a>
 	</nav>
 
 	<div class="grid_01_main">
@@ -31,10 +31,14 @@
 			<!-- bonjour! -->
 		</div>
 
-		<button class="js-gamenav js-start"><a href="#game">&gt; get started</a></button>
-		<button class="js-gamenav js-back"><a href="#error">&gt; back</a></button>
-		<button class="js-gamenav js-next"><a href="#error">&gt; continue</a></button>
-		<button class="js-gamenav js-next"><a href="#identify">&gt; guess your identity</a></button>
+		<div class="button-nav" style="display: none; text-align: right;">
+			<button class="btn_hero js-gamenav js-start"><a href="#game">&gt; get started</a></button>
+			<button class="btn_hero js-gamenav js-back"><a href="#error">&gt; back</a></button>
+			<button class="btn_hero js-gamenav js-next js-continue"><a href="#error">&gt; continue</a></button>
+			<div style="margin-top: 1.5em">
+				<button class="btn_hero js-gamenav js-next"><a href="#identify">&gt; guess your identity</a></button>
+			</div>
+		</div>
 	</div>
 
 	<!-- <div class="grid_01_main">
@@ -137,27 +141,10 @@
 	<!-- TODO: figure out ID scheme for templates? -->
 	<template id="welcome">
 		<div class="hero_copy">
-			<!-- <h1>Mirror, Mirror</h1> -->
-			<img style="width: 100%; max-width: 100%;" src="img/KitchenAdvantage-01.png">
+			<h1>Mirror, Mirror</h1>
+			<!-- <img style="width: 100%; max-width: 100%;" src="img/KitchenAdvantage-01.png"> -->
 			<h4>A game that helps players confront their unknown biases by exposing them to ways of life at different intersections of race, gender, socioeconomic status and ability.</h4>
 		</div>
-	</template>
-
-	<template id="quotes">
-		<p>
-			"All those moments will be lost in time… like tears in rain." - Roy Batty/Rutger Hauer in Blade Runner (1982). "Bond. James Bond." - Sean Connery in Dr No (1962). "A boy's best friend is his mother." - Norman Bates/Anthony Perkins in Psycho (1960). "But then I realised maybe that's what hell is: the entire rest of eternity spent in f_____g Bruges. And I really really hoped I wouldn't die." - Ray/Colin Farrell in In Bruges (2008). “Carpe diem. Seize the day, boys. Make your lives extraordinary.” - John Keating/Robin Williams in Dead Poets Society (1989). "Daddy! My Daddy!" - Bobbie Waterbury/Jenny Agutter in The Railway Children (1970). "Did you think I'd be too stupid to know what a eugoogly is?" - Derek Zoolander/Ben Stiller in Zoolander
-		</p>
-	</template>
-
-
-
-	<template class="encounter" id="eating-hi-ses" data-attributes="high_ses">
-		You are hearing me talk about science and typing and other things.
-	</template>
-
-
-	<template class="encounter" id="eating-low-ses" data-attributes="low_ses race_black">
-		Eat no breakfast
 	</template>
 
 	<template	id="identify">
@@ -166,12 +153,12 @@
 	</template>
 
 	<template	id="summary">
-		<p>Here's how you did:</p>
+		<p>Here's how you did!</p>
 		<!-- results -->
 		<div id="match_results"></div>
 
-
 		<!-- explanation -->
+		<div class="results_explanation"></div>
 
 		<div class="profile">
 			<img style="float: left; width: 30%; margin: 0.6em 1em 0 0;" src="img/EGZ2I6wG.jpg">
@@ -184,16 +171,78 @@
 		<p>Drop us a note <a href="https://github.com/teambronzeville/mirrormirror">on the project page</a> if you'd like to tell us what happened.</p>
 	</template>
 
+	<!-- EXPLANATIONS of criteria options -->
+
+	<template class="explanation" id="expl_race">
+
+	</template>
+
+	<!-- ENCOUNTERS -->
+
+	<template class="encounter" id="social-media-w-c-f-n-u" data-attributes="WHITE CISF DIV UPPER">
+		<p>Time to check your social media feed! Oh wait... your friend just posted an article that's pretty offensive to people of color. You want to say something, but it doesn't really apply to your race. You ignore it instead.</p>
+	</template>
+
+	<template class="encounter" id="social-media-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
+		<p>Time to check your social media feed! Oh wait... your friend just posted an article that's pretty offensive to people of color. You want to say something, but it doesn't really apply to your race. You ignore it instead.</p>
+	</template>
+
+	<template class="encounter" id="breakfast-w-c-f-n-u" data-attributes="WHITE CISF DIV UPPER">
+		<p>You go to the kitchen to eat breakfast. You open the cabinets and realize you only have one serving of cereal left. You finish the cereal and decide to go grocery shopping later today</p>
+	</template>
+
+	<template class="encounter" id="breakfast-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
+		<p>You go to the kitchen to eat breakfast. You open the cabinets and realize you only have one serving of cereal left. You decide to skip breakfast, knowing you won't be able to buy groceries later today</p>
+	</template>
+
+	<template class="encounter" id="train-w-c-f-n-u" data-attributes="WHITE CISF DIV UPPER">
+		<p>You rush to the train station but just as you reach the platform, you see the train pulling away. The next train comes in 25 minutes, so you call for an Uber instead so you can get to work on time</p>
+	</template>
+
+	<template class="encounter" id="train-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
+		<p>You rush to the train station but just as you reach the platform, you see the train pulling away. The next train comes in 25 minutes and there's no other accessible mode of transportation, you all you can do is wait</p>
+	</template>
+
+	<template class="encounter" id="harassment-w-c-f-n-u" data-attributes="WHITE CISF DIV UPPER">
+		<p>You've just started work at a new place and your boss calls you into his office. Instead of asking about your work, he makes a suggestive comment about your appearance.</p>
+	</template>
+
+	<template class="encounter" id="harassment-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
+		<p>You've just started work at a new place and your boss calls you into his office. Instead of asking about your work, he asks you how you're settling into the company.</p>
+	</template>
+
+	<template class="encounter" id="elevator-w-c-f-n-u" data-attributes="WHITE CISF DIV UPPER">
+		<p>You're alone in the elevator waiting to go to the ground floor. The doors open and your male colleague walks in. You move to the side.</p>
+	</template>
+
+	<template class="encounter" id="elevator-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
+		<p>You're alone in the elevator waiting to go to the ground floor. The doors open and your male colleague walks in and makes small talk.</p>
+	</template>
+
+	<template class="encounter" id="irl-w-c-f-n-u" data-attributes="WHITE CISF DIV UPPER">
+		<p>You turn on the tap in the kitchen sink and light brown water flows out of it. You know that this isn't normal, so you go to the store and buy some jugs of water to use in the meantime.</p>
+	</template>
+
+	<template class="encounter" id="irl-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
+		<p>You turn on the tap in the kitchen sink and light brown water flows out of it. You know that this isn't normal, so you boil the water hoping it's enough to kill the germs.</p>
+	</template>
+
+	<!-- <template class="encounter" id="eating-low-ses" data-next="the_id_of_the_next_one" data-attributes="LOWER BLACK">
+		<p>Eat no breakfast</p>
+	</template> -->
+
+	<!-- UTILITY TEMPLATES -->
+
 	<template id="guess_match">
 		<div class="guess">
-			<div class="match">&#10003;</div>
-			<div class="no-match">&times;</div>
-			<div class="guess-text"></div>
+			<div class="match-ui match">&#10003;</div>
+			<div class="match-ui no-match">&times;</div>
+			<div class="guess-attribute"></div>
 			<div class="actual-text"></div>
 		</div>
 	</template>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<script src="js/lodash.min.js"></script>
 	<script src="js/main.js"></script>
 </body>

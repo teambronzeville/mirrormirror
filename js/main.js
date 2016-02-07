@@ -11,10 +11,10 @@ jQuery(document).ready(function($) {
   var criteria = {
     race: {
       WHITE: 'White',
-      BLACK: 'Black or African-American',
-      AMRNATIVE: 'American Indian or Alaska Native',
+      BLACK: 'Black/African-American',
+      AMRNATIVE: 'American Indian/Alaska Native',
       ASIAN: 'Asian',
-      NATHWPI: 'Native Hawaiian or Other Pacific Islander'
+      NATHWPI: 'Native Hawaiian/Pacific Islander'
     },
     gender: {
       CISF: 'Cis Woman',
@@ -47,27 +47,52 @@ jQuery(document).ready(function($) {
 			ability_mental: pickRandomProperty(criteria.ability_mental),
 			ability_physical: pickRandomProperty(criteria.ability_physical)
 		};
-		var guess = {};
+
+		var identity_advantage = {
+			race: 'WHITE',
+			gender: 'CISM',
+			ses: 'UPPER',
+			ability_mental: 'DIV',
+			ability_physical: 'ABLE'
+		};
+
+		var identity_disadvantage = {
+			race: 'BLACK',
+			gender: 'GQ',
+			ses: 'MIDDLE',
+			ability_mental: 'TYP',
+			ability_physical: 'DIS'
+		};
+
+		var testguess = {
+			ability_mental: "TYP",
+			ability_physical: "ABLE",
+			gender: "CISM",
+			race: "BLACK",
+			ses: "UPPER"
+		};
 
     return {
-			getAttribute: function(attr) {
-				return identity[attr];
+
+			identity: identity_disadvantage,
+
+			getIdentityAttribute: function(attr) {
+				// console.log(attr, identity[attr], criteria[attr][identity[attr]]);
+				return criteria[attr][identity[attr]];
 			},
+
 			// guess is an object, structured equivalently to identity ^
 			compare: function(guess) {
 				results = {};
-				// console.log(guess);
 				// get user "guess" + compare with "hidden" identity
 				_.each(identity, function(attribute, label) {
 					results[label] = results[label] || [];
-					// console.log(attribute, label);
-					console.log('GUESS', guess[label]);
-					console.log('MATCH?', attribute == guess[label]);
 					results[label] = (attribute == guess[label]);
 				});
-				console.log('RESULTS', results);
+				return results;
 			},
-			guess: guess,
+
+			guess: testguess,
       view: views.START
     };
   }();
@@ -108,19 +133,34 @@ jQuery(document).ready(function($) {
 	// game ticks! every time something changes,
 	function tick() {
 		// nav hide/show
+		$('.button-nav').show();
 		$('.js-gamenav').hide();
 		$('.' + state.view).show();
 
 		if(state.view == views.GAME) {
 			// choose a random encounter & load it
+			loadRandomEncounter();
 		}
 
 		if(state.view == views.SUMMARY) {
 			var results = state.compare(state.guess);
+			var yourGuess;
+			// console.log('TICK RESULTS', results);
 
 			// generate guess markup into #match_results using #guess_match
-			$guess = $( $('#guess_match').html() );
-			$guess.appendTo('#match_results');
+			_.each(results, function(result, label) {
+				yourGuess = '';
+				$guess = $( $('#guess_match').html() );
+				if(result) {
+					$guess.find('.match').show();
+				} else {
+					$guess.find('.no-match').show();
+					yourGuess = '(' + criteria[label][state.guess[label]] + ')';
+				}
+				$guess.find('.guess-attribute').text(label);
+				$guess.find('.actual-text').text(state.getIdentityAttribute(label) + ' ' + yourGuess);
+				$guess.appendTo('#match_results');
+			});
 		}
 
 		if(state.view == views.IDENTIFY) {
@@ -153,20 +193,45 @@ jQuery(document).ready(function($) {
   var $encounters = $('.encounter');
   var encounters_by_attribute = {};
 
+	console.log('ENC ID', state.identity);
+
+	var valid_attributes = _.map(state.identity, function(attr, key) {
+		return attr;
+	});
+	// console.log('VALID ATTR', valid_attributes);
+	var valid_encounters = [];
+
   _.each($encounters, function(enc) {
     var $enc = $(enc);
     var attrs = $enc.data('attributes').split(' ');
 
     _.each(attrs, function(attr) {
+			if(valid_attributes.indexOf(attr) > 0) {
+				valid_encounters.push($enc.attr('id'));
+			}
       encounters_by_attribute[attr] = encounters_by_attribute[attr] || [];
       encounters_by_attribute[attr].push($enc.html());
     });
   });
 
+	valid_encounters = _.uniq(_.shuffle(valid_encounters));
+
+	console.log(valid_attributes, valid_encounters);
+
+	// console.log(encounters_by_attribute);
+
 	// TODO: encounters that haven't been used yet
-	// loadRandomEncounter() {
-	// 	// TODO...
-	// }
+	function loadRandomEncounter() {
+		loadContentForId(valid_encounters.pop());
+		if(valid_encounters.length <= 0) {
+			$('.js-continue').hide();
+		}
+	}
+
+	$('.js-continue').on('click', function() {
+		loadRandomEncounter();
+		return false;
+	});
 
   /**
   	CONTENT LOADING / MANAGEMENT
@@ -222,7 +287,4 @@ jQuery(document).ready(function($) {
     window.location.hash = '';
     window.location.hash = tmp;
   }
-
-	generateGuessUI();
-
 });

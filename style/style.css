@@ -40,7 +40,7 @@ a {
   	transition:.5s;
 }
 
-a:visited {
+p a:visited {
 	text-decoration: none;
 	color:#ffffff;
 }
@@ -132,6 +132,10 @@ h3 a {
 	height: auto;
 }
 
+button a {
+	color: black;
+}
+
 input, textarea {
 	border-radius: 6px;
 	border: 0px none;
@@ -176,12 +180,16 @@ label {
 	-moz-box-shadow: #1b7045 0 0.188em;
 	box-shadow: #1b7045 0 0.188em;
 	border-radius: 0.250em;
-	padding: 0.938em;
+	border: 0;
+	padding: 0.8 0.938em;
 	margin: 0 auto;
 }
 
 .btn_hero:hover {
 	background: #0d884a;
+}
+
+.btn_hero .js-gamenav {
 
 }
 
@@ -340,9 +348,50 @@ p {
 }
 
 select {
-		display: block;
-		font-size: 1.2em;
-		margin-bottom: 1em;
+	display: block;
+	font-size: 1.2em;
+	margin-bottom: 1em;
+}
+
+.guess {
+	background-color: white;
+	border-radius: 3px;
+	margin-bottom: 0.4em;
+}
+.guess div {
+	display: inline-block;
+}
+.guess .match-ui {
+	float: left;
+	clear: left;
+	width: 16px;
+	font-size: 1.5em;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	text-align: center;
+	display: none;
+	margin-right: 0.5em;
+	padding: 0.35em 0.16em;
+}
+
+.match {
+	color: green;
+	background-color: lightgreen;
+}
+.no-match {
+	color: red;
+	background-color: pink;
+}
+
+.guess-attribute {
+	color: #b9b9b9;
+	margin: 0.15em;
+	width: 80%;
+}
+
+.actual-text {
+	margin: 0.15em;
+	width: 80%;
 }
 
 /* Home - Hero */
