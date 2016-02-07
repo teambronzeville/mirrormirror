@@ -21,13 +21,19 @@
 		</div> -->
 	<!-- </div> -->
 
+	<nav style="background-color: #FFF; padding: 0 0 0 0.5em">
+		<img style="width: 30%; min-width: 150px;" src="img/mm_logotype_horiz.png" alt="mirror mirror, the logo">
+	</nav>
+
 	<div class="grid_01_main">
 
 		<div id="contentTarget">
 			<!-- bonjour! -->
 		</div>
 
-		<p><a class="js-next" href="#error">&gt; continue</a></p>
+		<p><a class="js-start" href="#game">&gt; get started</a></p>
+		<p><a class="js-gamenav js-next" href="#error">&gt; continue</a></p>
+		<p><a class="js-guess" href="#identify">&gt; guess your identity</a></p>
 	</div>
 
 	<!-- <div class="grid_01_main">
@@ -130,7 +136,8 @@
 	<!-- TODO: figure out ID scheme for templates? -->
 	<template id="welcome">
 		<div class="hero_copy">
-			<h1>Mirror Mirror</h1>
+			<!-- <h1>Mirror, Mirror</h1> -->
+			<img style="width: 100%; max-width: 100%;" src="img/KitchenAdvantage-01.png">
 			<h4>A game that helps players confront their unknown biases by exposing them to ways of life at different intersections of race, gender, socioeconomic status and ability.</h4>
 		</div>
 	</template>
@@ -141,16 +148,26 @@
 		</p>
 	</template>
 
-	<template id="intro">
-		<p>hi.</p>
+
+
+	<template class="encounter" id="eating-hi-ses" data-attributes="high_ses">
+		Eat breakfast
 	</template>
 
-	<template id="error">
+
+	<template class="encounter" id="eating-low-ses" data-attributes="low_ses race_black">
+		Eat no breakfast
+	</template>
+
+
+
+	<template id="error" class="family social-media">
 		<p>Hey there! If you're seeing this, something went wrong. Not with you, but with this little game.</p>
 		<p>Drop us a note <a href="https://github.com/teambronzeville/mirrormirror">on the project page</a> if you'd like to tell us what happened.</p>
 	</template>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/lodash.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
 
