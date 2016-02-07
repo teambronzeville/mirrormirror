@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
     INFO: 'js-back', // if we have an about page...
 		START: 'js-start',
     GAME: 'js-next',
-    IDENTIFY: 'js-guess',
+    IDENTIFY: 'js-identify',
 		SUMMARY: 'js-summary'
   }
 
@@ -64,35 +64,28 @@ jQuery(document).ready(function($) {
 			ability_physical: 'DIS'
 		};
 
-		var testguess = {
-			ability_mental: "TYP",
-			ability_physical: "ABLE",
-			gender: "CISM",
-			race: "BLACK",
-			ses: "UPPER"
-		};
-
     return {
 
-			identity: identity_disadvantage,
+			identity: identity_advantage,
 
 			getIdentityAttribute: function(attr) {
 				// console.log(attr, identity[attr], criteria[attr][identity[attr]]);
-				return criteria[attr][identity[attr]];
+				return criteria[attr][this.identity[attr]];
 			},
 
 			// guess is an object, structured equivalently to identity ^
-			compare: function(guess) {
+			compare: function(guess, og_identity) {
+				console.log(guess, og_identity);
 				results = {};
 				// get user "guess" + compare with "hidden" identity
-				_.each(identity, function(attribute, label) {
+				_.each(og_identity, function(attribute, label) {
 					results[label] = results[label] || [];
 					results[label] = (attribute == guess[label]);
 				});
 				return results;
 			},
 
-			guess: testguess,
+			guess: {},
       view: views.START
     };
   }();
@@ -114,7 +107,7 @@ jQuery(document).ready(function($) {
 			$sel = $('<select/>')
 				.data('criteria', label)
 				.addClass('guess-attribute')
-				.append( $('<option/>' )
+				.append( $('<option/>')
 				.attr('value', 0)
 				.text('-- select a ' + label) );
 
@@ -128,6 +121,7 @@ jQuery(document).ready(function($) {
 
 			$sel.appendTo('#identity_options');
 		});
+		$('.js-identify').show();
 	}
 
 	// game ticks! every time something changes,
@@ -143,7 +137,7 @@ jQuery(document).ready(function($) {
 		}
 
 		if(state.view == views.SUMMARY) {
-			var results = state.compare(state.guess);
+			var results = state.compare(state.guess, state.identity);
 			var yourGuess;
 			// console.log('TICK RESULTS', results);
 
@@ -182,7 +176,9 @@ jQuery(document).ready(function($) {
 			var criteria = $(attr).data('criteria');
 			state.guess[ $(attr).data('criteria') ] = $(attr).val()
 		});
+		// console.log('FRESH GUESS', state.guess);
 		window.location.hash = 'summary';
+		return false;
 	};
 
   /**
@@ -225,6 +221,7 @@ jQuery(document).ready(function($) {
 		loadContentForId(valid_encounters.pop());
 		if(valid_encounters.length <= 0) {
 			$('.js-continue').hide();
+			$('.js-last').show();
 		}
 	}
 

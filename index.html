@@ -15,11 +15,6 @@
 </head>
 
 <body>
-	<!-- <div class="grid_01_main"> -->
-		<!-- <div id="logo">
-			<a href="index.html" title=""><img src="http://placehold.it/150x150" alt=""></a>
-		</div> -->
-	<!-- </div> -->
 
 	<nav style="background-color: #FFF; padding: 0 0 0 0.5em">
 		<a href="/"><img style="width: 30%; min-width: 150px;" src="img/mm_logotype_horiz.png" alt="mirror mirror, the logo"></a>
@@ -36,121 +31,25 @@
 			<button class="btn_hero js-gamenav js-back"><a href="#error">&gt; back</a></button>
 			<button class="btn_hero js-gamenav js-next js-continue"><a href="#error">&gt; continue</a></button>
 			<div style="margin-top: 1.5em">
-				<button class="btn_hero js-gamenav js-next"><a href="#identify">&gt; guess your identity</a></button>
+				<button class="btn_hero js-gamenav js-last"><a href="#identify">&gt; guess your identity</a></button>
+				<button class="btn_hero js-gamenav js-identify" id="submit_guess"><a href="#summary">&gt; Submit your Guess</a></button>
 			</div>
 		</div>
 	</div>
-
-	<!-- <div class="grid_01_main">
-		<div class="hero_copy">
-			<p>test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest
-				testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test</p>
-			<img src="img/projects/openended/original_note.png" alt="The first note written about the podcast" style="float:left; width:35%;">
-			<p>Floating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating image yeahFloating
-				image yeah</p>
-			<p>test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest
-				testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test</p>
-			<p>test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest
-				testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test</p>
-			<p>test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest
-				testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test</p>
-		</div>
-	</div>
-	<div class="grid_01_main">
-		<div class="grid_03_three_col">
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="l">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="vsco.html">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-			<div class="grid_04">
-				<a href="">
-					<img src="" alt="">
-					<h3>Test</h3>
-				</a>
-			</div>
-		</div>
-	</div>
-	<footer>
-
-	</footer>
-	-->
 
 	<!-- TEMPLATES -->
-	<!-- TODO: figure out ID scheme for templates? -->
 	<template id="welcome">
 		<div class="hero_copy">
 			<h1>Mirror, Mirror is a game.</h1>
 			<!-- <img style="width: 100%; max-width: 100%;" src="img/KitchenAdvantage-01.png"> -->
 			<p>Our goal is to help players confront their unknown biases by exposing them to ways of life at different intersections of race, gender, socioeconomic status and ability.</p>
-			<p>You'll experience a day in the life of a random identity. Pay attention to the details, and when you're ready, take a guess!</p>
+			<p>You'll experience a day in the life of a random identity. Pay attention to the details, and when you're ready, take a guess at the race, gender, socioeconomic-status, and mental/physical ability.</p>
+			<p>Assume you are living in the USA, and that you're an adult.</p>
 		</div>
 	</template>
 
 	<template	id="identify">
 		<div id="identity_options"></div>
-		<button id="submit_guess">Submit!</button>
 	</template>
 
 	<template	id="summary">
@@ -163,7 +62,12 @@
 
 		<div class="profile">
 			<img style="float: left; width: 30%; margin: 0.6em 1em 0 0;" src="img/EGZ2I6wG.jpg">
-			<p>Kittens are an awesome source of ice cream. Learn more about <a href="#null">this kitten</a>.</p>
+			<div>
+				<p>[ explanations of evidence in the story goes here. ]</p>
+			</div>
+			<div>
+				<p>Kittens are an awesome source of ice cream. Learn more about <a href="#null">this kitten</a>.</p>
+			</div>
 		</div>
 	</template>
 
@@ -227,10 +131,6 @@
 	<template class="encounter" id="irl-b-g-t-d-m" data-attributes="BLACK GQ TYP DIS MIDDLE">
 		<p>You turn on the tap in the kitchen sink and light brown water flows out of it. You know that this isn't normal, so you boil the water hoping it's enough to kill the germs.</p>
 	</template>
-
-	<!-- <template class="encounter" id="eating-low-ses" data-next="the_id_of_the_next_one" data-attributes="LOWER BLACK">
-		<p>Eat no breakfast</p>
-	</template> -->
 
 	<!-- UTILITY TEMPLATES -->
 
