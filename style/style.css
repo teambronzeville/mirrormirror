@@ -95,11 +95,14 @@ h3 a {
 
 .grid_01_main {
 	margin: 0 auto;
-	max-width: 940px;
+	max-width: 768px;
 	position: relative;
 	padding: 1em 1.250em;
 }
 
+.button-nav {
+	margin-top: 0.9em;
+}
 
 .hero_copy img {
 	float: left;
@@ -696,6 +699,9 @@ a.tooltip span {
     right: 20px;
     bottom: 20px;
   }
+	.grid_01_main p {
+		font-size: 1.5em;
+	}
 }
 
 @media only screen and (min-width: 1024px) {
